@@ -5,6 +5,14 @@ module.exports  = function( bower , grunt , kulor , log , callback ) {
         tool;
     
     tool    = {
+        makeWatchYAML : function(){
+            var _path       = path.resolve( "grunt/watch.yaml" ) ,
+                _config     = grunt.file.readYAML( _path );
+            console.log( _config );
+            _config.js.tasks.push( "babel" );
+            kulor.file.writeYAML( _path , _config )
+            return this;
+        } ,
         makeAliasesYAML : function(){
             var _path       = path.resolve( "grunt/aliases.yaml" ) ,
                 _config     = grunt.file.readYAML( _path );
@@ -43,6 +51,7 @@ module.exports  = function( bower , grunt , kulor , log , callback ) {
     log( "start load kulor-init-babel" );
     tool.makePackageConfig()
         .makeBabelYAML()
+        .makeWatchYAML()
         .makeAliasesYAML();
     log( "kulor-init-babel init success" );
     callback();

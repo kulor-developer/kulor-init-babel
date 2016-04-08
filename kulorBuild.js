@@ -8,7 +8,6 @@ module.exports  = function( bower , grunt , kulor , log , callback ) {
         makeWatchYAML : function(){
             var _path       = path.resolve( "grunt/watch.yaml" ) ,
                 _config     = grunt.file.readYAML( _path );
-            console.log( _config );
             _config.js.tasks.push( "babel" );
             kulor.file.writeYAML( _path , _config )
             return this;
